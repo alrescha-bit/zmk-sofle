@@ -66,24 +66,6 @@
         hold-trigger-on-release;
     };
 
-    layer_change: layer_change {
-        compatible = "zmk,behavior-sensor-rotate-var";
-        label = "LAYER_CHANGE";
-        #sensor-binding-cells = <2>;
-        bindings = <&to>, <&to>;
-
-        tap-ms = <1>;
-    };
-
-    bluetooth: bluetooth {
-        compatible = "zmk,behavior-sensor-rotate-var";
-        label = "BLUETOOTH";
-        #sensor-binding-cells = <2>;
-        bindings = <&bt>, <&bt>;
-
-        tap-ms = <1>;
-    };
-
     // Activate ADJUST layer by pressing raise and lower
 
     conditional_layers { compatible = "zmk,conditional-layers"; };
@@ -104,7 +86,7 @@
                     &kp DELETE       &kp LEFT_GUI  &kp LEFT_ALT     &kp SPACE  &kp RET       &kp BACKSPACE  &kp RIGHT_SHIFT  &hmr RIGHT_ALT LEFT_BRACKET  &hmr RIGHT_BRACKET RIGHT_WIN  &kp SYSREQ
             >;
 
-            sensor-bindings = <&layer_change 1 0>, <&bluetooth BT_NXT BT_PRV>;
+            sensor-bindings = <&none>, <&none>;
         };
 
         function {
@@ -116,7 +98,7 @@
                   &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp TAB     &kp KP_NUMBER_0  &kp KP_LEFT_PARENTHESIS  &kp KP_RIGHT_PARENTHESIS  &kp KP_DOT
             >;
 
-            sensor-bindings = <&layer_change 0 2>, <&bluetooth BT_NXT BT_PRV>;
+            sensor-bindings = <&none>, <&none>;
         };
 
         qwerty {
@@ -137,7 +119,7 @@
                     &kp DELETE       &kp LEFT_GUI  &kp LEFT_ALT     &kp SPACE  &kp RET    &kp BACKSPACE  &kp RIGHT_SHIFT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp C_MENU
             >;
 
-            sensor-bindings = <&layer_change 0 1>, <&bluetooth BT_NXT BT_PRV>;
+            sensor-bindings = <&none>, <&none>;
         };
     };
 };
