@@ -28,10 +28,6 @@
     trigger-period-ms = <16>;
 };
 
-&inc_dec_kp {
-    bindings = <&gresc>, <&gresc>;
-};
-
 / {
     hml: hml {
         compatible = "zmk,behavior-hold-tap";
@@ -61,6 +57,85 @@
         hold-trigger-on-release;
     };
 
+    enc_shift_up: enc_shift_up {
+        compatible = "zmk,behavior-mod-morph";
+        label = "ENC_SHIFT_UP";
+        bindings = <&kp C_VOLUME_UP>, <&kp C_BRIGHTNESS_INC>;
+
+        #binding-cells = <0>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    enc_shift_down: enc_shift_down {
+        compatible = "zmk,behavior-mod-morph";
+        label = "ENC_SHIFT_DOWN";
+        bindings = <&kp C_VOLUME_DOWN>, <&kp C_BRIGHTNESS_DEC>;
+
+        #binding-cells = <0>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+
+    inc_dec_gresc: inc_dec_gresc {
+        compatible = "zmk,behavior-sensor-rotate-var";
+        label = "INC_DEC_GRESC";
+        #sensor-binding-cells = <2>;
+        bindings = <&enc_gui_up>, <&enc_gui_down>;
+    };
+
+    enc_ctrl_up: enc_ctrl_up {
+        compatible = "zmk,behavior-mod-morph";
+        label = "ENC_CTRL_UP";
+        bindings = <&enc_shift_up>, <&bt BT_NXT>;
+
+        #binding-cells = <0>;
+        mods = <(MOD_LCTL|MOD_RCTL)>;
+    };
+
+    enc_ctrl_down: enc_ctrl_down {
+        compatible = "zmk,behavior-mod-morph";
+        label = "ENC_CTRL_DOWN";
+        bindings = <&enc_shift_down>, <&bt BT_PRV>;
+
+        #binding-cells = <0>;
+        mods = <(MOD_LCTL|MOD_RCTL)>;
+    };
+
+    enc_alt_up: enc_alt_up {
+        compatible = "zmk,behavior-mod-morph";
+        label = "ENC_ALT_UP";
+        bindings = <&enc_ctrl_up>, <&kp LA(TAB)>;
+
+        #binding-cells = <0>;
+        mods = <(MOD_LALT|MOD_RALT)>;
+    };
+
+    enc_alt_down: enc_alt_down {
+        compatible = "zmk,behavior-mod-morph";
+        label = "ENC_ALT_DOWN";
+        bindings = <&enc_ctrl_down>, <&kp LA(LS(TAB))>;
+
+        #binding-cells = <0>;
+        mods = <(MOD_LALT|MOD_RALT)>;
+    };
+
+    enc_gui_up: enc_gui_up {
+        compatible = "zmk,behavior-mod-morph";
+        label = "ENC_GUI_UP";
+        bindings = <&enc_alt_up>, <&kp LG(LC(RIGHT))>;
+
+        #binding-cells = <0>;
+        mods = <(MOD_RGUI|MOD_LGUI)>;
+    };
+
+    enc_gui_down: enc_gui_down {
+        compatible = "zmk,behavior-mod-morph";
+        label = "ENC_GUI_DOWN";
+        bindings = <&enc_alt_down>, <&kp LG(LC(LEFT))>;
+
+        #binding-cells = <0>;
+        mods = <(MOD_RGUI|MOD_LGUI)>;
+    };
+
     // Activate ADJUST layer by pressing raise and lower
 
     conditional_layers { compatible = "zmk,conditional-layers"; };
@@ -82,7 +157,7 @@
             >;
 
             sensor-bindings =
-                <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>,
+                <&inc_dec_gresc 0 0>,
                 <&inc_dec_kp C_BRIGHTNESS_INC C_BRIGHTNESS_DEC>;
         };
 
