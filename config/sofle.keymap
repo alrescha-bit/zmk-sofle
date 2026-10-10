@@ -90,8 +90,33 @@
     keymap {
         compatible = "zmk,keymap";
 
-        base {
-            display-name = "base";
+        colemak {
+            display-name = "colemak";
+            bindings = <
+&kp GRAVE   &kp N1  &kp N2           &kp N3        &kp N4           &kp N5                                  &kp N6           &kp N7                       &kp N8                        &kp N9                      &kp N0     &kp MINUS
+&kp TAB     &kp Q   &kp W            &kp F         &kp P            &kp G                                   &kp J            &kp L                        &kp U                         &kp Y                       &kp COLON  &kp BACKSLASH
+&kp LCTRL   &kp A   &hml LEFT_WIN R  &hml LCTRL S  &hml LEFT_ALT T  &kp G                                   &kp H            &hmr LEFT_ALT N              &hmr RCTRL E                  &hmr RIGHT_GUI I            &kp O      &kp SQT
+&kp ESCAPE  &kp Z   &kp X            &kp C         &kp V            &kp B      &kp C_MUTE    &bt BT_CLR     &kp K            &kp M                        &kp COMMA                     &kp DOT                     &kp FSLH   &kp EQUAL
+                    &kp DELETE       &kp LEFT_GUI  &kp LEFT_ALT     &kp SPACE  &kp RET       &kp BACKSPACE  &kp RIGHT_SHIFT  &hmr RIGHT_ALT LEFT_BRACKET  &hmr RIGHT_BRACKET RIGHT_WIN  &hmr SYSREQ K_CONTEXT_MENU
+            >;
+
+            sensor-bindings = <&layer_change 1 0>, <&bluetooth BT_NXT BT_PRV>;
+        };
+
+        function {
+            bindings = <
+&kp F22  &kp F23  &kp F24       &kp F10       &kp F11       &kp F12                                   &kp KP_NUMLOCK   &kp KP_DIVIDE            &kp KP_MULTIPLY           &kp KP_MINUS  &trans  &trans
+&kp F19  &kp F20  &kp F21       &kp F7        &kp F8        &kp F9                                    &kp KP_N7        &kp KP_NUMBER_8          &kp KP_NUMBER_9           &kp KP_PLUS   &trans  &trans
+&kp F16  &kp F17  &kp F18       &kp F4        &kp F5        &kp F6                                    &kp KP_NUMBER_4  &kp KP_NUMBER_5          &kp KP_NUMBER_6           &kp KP_ENTER  &trans  &trans
+&kp F13  &kp F14  &kp F15       &kp F1        &kp F2        &kp F3        &to 2           &bt BT_CLR  &kp KP_NUMBER_1  &kp KP_NUMBER_2          &kp KP_N3                 &kp KP_EQUAL  &trans  &trans
+                  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp TAB     &kp KP_NUMBER_0  &kp KP_LEFT_PARENTHESIS  &kp KP_RIGHT_PARENTHESIS  &kp KP_DOT
+            >;
+
+            sensor-bindings = <&layer_change 0 2>, <&bluetooth BT_NXT BT_PRV>;
+        };
+
+        qwerty {
+            display-name = "qwerty";
 
             // ------------------------------------------------------------------------------------------------------------
             // |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   | BKSPC |
@@ -104,33 +129,8 @@
 &kp GRAVE   &kp N1  &kp N2           &kp N3        &kp N4           &kp N5                               &kp N6           &kp N7            &kp N8             &kp N9            &kp N0    &kp MINUS
 &kp TAB     &kp Q   &kp W            &kp E         &kp R            &kp T                                &kp Y            &kp U             &kp I              &kp O             &kp P     &kp BACKSLASH
 &kp LCTRL   &kp A   &hml LEFT_WIN S  &hml LCTRL D  &hml LEFT_ALT F  &kp G                                &kp H            &hmr RIGHT_ALT J  &hmr RCTRL K       &hmr RIGHT_GUI L  &kp SEMI  &kp SQT
-&kp ESCAPE  &kp Z   &kp X            &kp C         &kp V            &kp B      &to 0      &bt BT_CLR     &kp N            &kp M             &kp COMMA          &kp DOT           &kp FSLH  &kp EQUAL
+&kp ESCAPE  &kp Z   &kp X            &kp C         &kp V            &kp B      &to 2      &bt BT_CLR     &kp N            &kp M             &kp COMMA          &kp DOT           &kp FSLH  &kp EQUAL
                     &kp DELETE       &kp LEFT_GUI  &kp LEFT_ALT     &kp SPACE  &kp RET    &kp BACKSPACE  &kp RIGHT_SHIFT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp C_MENU
-            >;
-
-            sensor-bindings = <&layer_change 1 2>, <&bluetooth BT_NXT BT_PRV>;
-        };
-
-        function {
-            bindings = <
-&kp F22  &kp F23  &kp F24       &kp F10       &kp F11       &kp F12                                   &kp KP_NUMLOCK   &kp KP_DIVIDE            &kp KP_MULTIPLY           &kp KP_MINUS  &trans  &trans
-&kp F19  &kp F20  &kp F21       &kp F7        &kp F8        &kp F9                                    &kp KP_N7        &kp KP_NUMBER_8          &kp KP_NUMBER_9           &kp KP_PLUS   &trans  &trans
-&kp F16  &kp F17  &kp F18       &kp F4        &kp F5        &kp F6                                    &kp KP_NUMBER_4  &kp KP_NUMBER_5          &kp KP_NUMBER_6           &kp KP_ENTER  &trans  &trans
-&kp F13  &kp F14  &kp F15       &kp F1        &kp F2        &kp F3        &to 0           &bt BT_CLR  &kp KP_NUMBER_1  &kp KP_NUMBER_2          &kp KP_N3                 &kp KP_EQUAL  &trans  &trans
-                  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp TAB     &kp KP_NUMBER_0  &kp KP_LEFT_PARENTHESIS  &kp KP_RIGHT_PARENTHESIS  &kp KP_DOT
-            >;
-
-            sensor-bindings = <&layer_change 2 0>, <&bluetooth BT_NXT BT_PRV>;
-        };
-
-        colemak {
-            display-name = "colemak";
-            bindings = <
-&kp GRAVE   &kp N1  &kp N2           &kp N3        &kp N4           &kp N5                                  &kp N6           &kp N7                       &kp N8                        &kp N9                      &kp N0     &kp MINUS
-&kp TAB     &kp Q   &kp W            &kp F         &kp P            &kp G                                   &kp J            &kp L                        &kp U                         &kp Y                       &kp COLON  &kp BACKSLASH
-&kp LCTRL   &kp A   &hml LEFT_WIN R  &hml LCTRL S  &hml LEFT_ALT T  &kp G                                   &kp H            &hmr LEFT_ALT N              &hmr RCTRL E                  &hmr RIGHT_GUI I            &kp O      &kp SQT
-&kp ESCAPE  &kp Z   &kp X            &kp C         &kp V            &kp B      &kp C_MUTE    &bt BT_CLR     &kp K            &kp M                        &kp COMMA                     &kp DOT                     &kp FSLH   &kp EQUAL
-                    &kp DELETE       &kp LEFT_GUI  &kp LEFT_ALT     &kp SPACE  &kp RET       &kp BACKSPACE  &kp RIGHT_SHIFT  &hmr RIGHT_ALT LEFT_BRACKET  &hmr RIGHT_BRACKET RIGHT_WIN  &hmr SYSREQ K_CONTEXT_MENU
             >;
 
             sensor-bindings = <&layer_change 0 1>, <&bluetooth BT_NXT BT_PRV>;
